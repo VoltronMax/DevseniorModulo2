@@ -15,8 +15,8 @@ public class SistemaController {
             return servicio.Login(username, password);
         }
 
-        public boolean crearUsuario(String nombre, Long id, String username, Rol rol, Usuario autor){
-            Usuario nuevo = rol == rol.ADMINISTRADOR ? new Administrador(username, id, username, username, rol) : new Estandar(username, id, username, username, rol);
+        public boolean crearUsuario(String nombre, Long id, String username, String password, Rol rol, Usuario autor){
+            Usuario nuevo = rol == Rol.ADMINISTRADOR ? new Administrador(nombre, id, username, password, rol) : new Estandar(nombre, id, username, password, rol);
             return servicio.crearUsuario(nuevo, autor);
         }
 
@@ -30,6 +30,10 @@ public class SistemaController {
 
         public void mostrarHistorial(Usuario usuario){
             usuario.showHistorial();
+        }
+
+        public boolean logout(){
+            return false;
         }
     }
 

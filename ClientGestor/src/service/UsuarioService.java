@@ -31,6 +31,7 @@ public class UsuarioService {
     public Usuario buscarPorUsername(String username){
         for (Usuario u : usuarios) {
             if (u != null && u.getUsername().equals(username)) {
+                u.setAction("Se busco al usuario: " + username);
                 return u;
             }
         }
@@ -72,5 +73,6 @@ public class UsuarioService {
             solicitante.setAction("Actualizo perfil");
             return passCambio;
         }
-    }
+        }
+    
 
