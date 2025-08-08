@@ -1,5 +1,6 @@
 package view;
 
+import java.net.Socket;
 import java.util.Scanner;
 import controller.SistemaController;
 import model.Usuario;
@@ -12,6 +13,25 @@ public class ConsolaView {
 
     public ConsolaView (SistemaController controlador){
         this.controlador = controlador;
+    }
+
+    public void iniciar(){
+        System.out.println(".:Sistema de gestion de clientes:.");
+
+        while (true) {
+            System.out.println("Ingrese un usuario:");
+            String user = sc.nextLine();
+            System.out.println("Contraseña:");
+            String pw = sc.nextLine();
+
+            Usuario actual = controlador.login(user, pw);
+
+            if (actual != null){
+                mostrarMenu(actual);
+            } else {
+                System.out.println("Usuario o contraseña incorrectos");
+            }
+        }
     }
 
     public boolean mostrarMenu(Usuario u){

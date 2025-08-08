@@ -16,7 +16,7 @@ public class SistemaController {
         }
 
         public boolean crearUsuario(String nombre, Long id, String username, String password, Rol rol, Usuario autor){
-            Usuario nuevo = rol == Rol.ADMINISTRADOR ? new Administrador(nombre, id, username, password, rol) : new Estandar(nombre, id, username, password, rol);
+            Usuario nuevo = rol == Rol.ADMINISTRADOR ? new Administrador(nombre, id, username, password) : new Estandar(nombre, id, username, password);
             return servicio.crearUsuario(nuevo, autor);
         }
 
@@ -30,6 +30,10 @@ public class SistemaController {
 
         public void mostrarHistorial(Usuario usuario){
             usuario.showHistorial();
+        }
+
+        public boolean createUserWithoutVerification(Usuario u){
+            return servicio.crearUsuario(u, u);
         }
 
         public boolean logout(){
